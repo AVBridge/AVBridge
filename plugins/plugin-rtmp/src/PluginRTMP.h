@@ -6,7 +6,9 @@
 #define AVBridge_PLUGINRTMP_H
 
 #include "core/IPlugin.h"
-#include "env.h"
+#include <set>
+#include "HandShake.h"
+
 
 class __declspec(dllexport) PluginRTMP : public IPlugin {
 public:
@@ -22,10 +24,13 @@ private:
     void HelloHttp();
 
     void TcpServer();
-};
 
+
+private:
+    std::set<std::string> clients;
+    Handshake handshake;
+};
 extern "C" __declspec(dllexport) IPlugin *Install() {
     return new PluginRTMP("rtmp-plugin", "0.0.1", "AVBridge");
-//    return new PluginRTMP();
 }
 #endif //AVBridge_PLUGINRTMP_H

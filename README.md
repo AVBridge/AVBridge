@@ -1,6 +1,6 @@
 # AVBridge 音视频流媒体转换与发布平台
 
-本项目是一个功能强大的音视频流媒体转换与发布平台，提供插件化的功能扩展、HTTP 和 TCP 服务注册，并计划未来支持 RTMP 协议。它可以用于实时转换、处理和发布音视频流，满足各种音视频处理需求。
+本项目是一个功能强大的音视频流媒体转换与发布平台，提供插件化的功能扩展、HTTP 和 TCP 服务注册，并计划未来支持多种协议(RTSP/RTMP/HLS/HTTP-FLV/WebSocket-FLV/GB28181/HTTP-TS/WebSocket-TS/HTTP-fMP4/WebSocket-fMP4/MP4/WebRTC)同时支持协议互转。它可以用于实时转换、处理和发布音视频流，满足各种音视频处理需求。
 
 ## 功能特性
 
@@ -60,3 +60,6 @@ extern "C" __declspec(dllexport) IPlugin *Install() {
 
 ## 反馈和贡献
 如果您发现任何问题或有任何建议，请随时向我们提出。我们欢迎社区的贡献者，如果您有兴趣为项目做出贡献，请参阅 CONTRIBUTING.md 文件了解更多信息。
+
+## 鸣谢
+https://github.com/shank03/HMAC_SHA256

@@ -4,6 +4,7 @@
 
 #include "PluginRTMP.h"
 
+
 Command PluginRTMP::React(std::any msg) {
     SPDLOG_INFO("PluginRTMPÖÐÎÄ");
     return Start;
@@ -27,10 +28,19 @@ void PluginRTMP::HelloHttp() {
 }
 
 void PluginRTMP::TcpServer() {
+    this->TcpServ.onMessage = [this](const SocketChannelPtr &channel, Buffer *buf) {
 
-    this->TcpServ.onMessage = [](const SocketChannelPtr &channel, Buffer *buf) {
         SPDLOG_INFO("len:{}", buf->size());
         PRINT_HEX(buf->data(), buf->size());
+        if (clients.count(channel->peeraddr()) == 0) {
+            SPDLOG_INFO("New Rtmp Connection");
+            this->handshake.execute(channel, buf);
+            clients.insert(channel->peeraddr());
+        } else {
+
+
+        }
+
     };
     this->TcpServ.onConnection = [](const SocketChannelPtr &channel) {
         std::string peerAddr = channel->peeraddr();
@@ -40,6 +50,6 @@ void PluginRTMP::TcpServer() {
             SPDLOG_INFO("{} disconnected! connfd={}", peerAddr.c_str(), channel->fd());
         }
     };
-    this->TcpServ.port = 1935;
+    this->TcpServ.port = 1936;
 }
 
